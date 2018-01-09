@@ -194,7 +194,7 @@ class FabberT1Widget(QpWidget):
         multivol = self.multivol_choice.combo.currentIndex() == 0
         if multivol:
             rundata["data"] = self.multivol_combo.currentText()
-            fas = self.fas.values()
+            fas = self.multivol_fas.values()
             nvols = self.ivm.data[self.multivol_combo.currentText()].nvols
             if nvols != len(fas):
                 raise QpException("Number of flip angles must match the number of volumes in the selected data (%i)" % nvols)
