@@ -68,7 +68,7 @@ class ChooseDataDialog(QtGui.QDialog):
 
     def _guess_fa(self):
         name = self.data_combo.currentText()
-        m = re.search(r".*(\d+).*$", name)
+        m = re.search(r".*?(\d+).*$", name)
         if m is not None:
             guess = m.group(1)
         else:
