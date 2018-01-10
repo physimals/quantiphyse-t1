@@ -181,6 +181,9 @@ class FabberT1Widget(QpWidget):
     def get_process(self):
         return self.FabberProcess(self.ivm)
 
+    def batch_options(self):
+        return "Fabber", self.get_rundata()
+
     def get_rundata(self):
         rundata = {}
         rundata["loadmodels"] = get_model_lib()
