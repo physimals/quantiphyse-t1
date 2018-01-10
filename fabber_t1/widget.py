@@ -17,16 +17,6 @@ from quantiphyse.utils.exceptions import QpException
 
 from ._version import __version__
 
-def get_model_lib(name="t1"):
-    plugindir = os.path.abspath(os.path.dirname(__file__))
-    if sys.platform.startswith("win"):
-        template = "%s.dll"
-    elif sys.platform.startswith("darwin"):
-        template = "lib%s.dylib"
-    else:
-        template = "lib%s.so"
-    return os.path.join(plugindir, template % "fabber_models_%s" % name)
-
 FAB_CITE_TITLE = "Variational Bayesian inference for a non-linear forward model"
 FAB_CITE_AUTHOR = "Chappell MA, Groves AR, Whitcher B, Woolrich MW."
 FAB_CITE_JOURNAL = "IEEE Transactions on Signal Processing 57(1):223-236, 2009."
@@ -186,7 +176,7 @@ class FabberT1Widget(QpWidget):
 
     def get_rundata(self):
         rundata = {}
-        rundata["loadmodels"] = get_model_lib()
+        rundata["model-group"] = "t1"
         rundata["save-mean"] = ""
         rundata["save-model-fit"] = ""
         rundata["noise"] = "white"
