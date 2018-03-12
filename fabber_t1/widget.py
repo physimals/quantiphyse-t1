@@ -80,7 +80,7 @@ class FabberT1Widget(QpWidget):
     T1 from VFA images, using the Fabber process
     """
     def __init__(self, **kwargs):
-        QpWidget.__init__(self, name="T1", icon="fabber",  group="Fabber", desc="T1 mapping from VFA images", **kwargs)
+        QpWidget.__init__(self, name="Fabber T1", icon="fabber",  group="T1", desc="T1 mapping from VFA images using Bayesian inference", **kwargs)
         
     def init_ui(self):
         vbox = QtGui.QVBoxLayout()
