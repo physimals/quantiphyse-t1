@@ -185,7 +185,7 @@ class FabberT1Widget(QpWidget):
         rundata["tr"] = self.tr.spin.value()/1000
 
         multivol = self.multivol_choice.combo.currentIndex() == 0
-        if multivol:
+        if multivol and self.multivol_combo.currentText() in self.ivm.data:
             rundata["data"] = self.multivol_combo.currentText()
             fas = self.multivol_fas.values()
             nvols = self.ivm.data[self.multivol_combo.currentText()].nvols
