@@ -12,7 +12,7 @@ import re
 from PySide import QtCore, QtGui
 
 from quantiphyse.gui.widgets import QpWidget, HelpButton, BatchButton, OverlayCombo, ChoiceOption, NumericOption, NumberList, LoadNumbers, OrderList, OrderListButtons, Citation, TitleWidget, RunBox
-from quantiphyse.utils import debug, warn, get_plugins
+from quantiphyse.utils import get_plugins
 from quantiphyse.utils.exceptions import QpException
 
 from ._version import __version__
