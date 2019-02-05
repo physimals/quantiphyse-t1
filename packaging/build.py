@@ -4,7 +4,7 @@ import shutil
 import subprocess
 import re
 
-package_name = "fabber_t1"
+package_name = "quantiphyse_fabber_t1"
 fabber_models_lib = "fabber_models_t1"
 
 def update_version(name, rootdir):
