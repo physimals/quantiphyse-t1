@@ -1,1 +1,3 @@
 include LICENSE requirements.txt
+recursive-include quantiphyse_t1 *.pyx *.cpp *.h
+
