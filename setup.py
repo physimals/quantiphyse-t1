@@ -6,11 +6,18 @@ import subprocess
 import re
 import io
 import glob
+import sys
 
 from setuptools import setup
 from setuptools import find_packages
+from setuptools.extension import Extension
 
-MODULE = 'quantiphyse_fabber_t1'
+from Cython.Build import cythonize
+from Cython.Distutils import build_ext
+
+import numpy
+
+MODULE = 'quantiphyse_t1'
 
 def get_filetext(rootdir, filename):
     """ Get the text of a local file """
@@ -80,6 +87,24 @@ def get_package_data(rootdir):
         MODULE : glob.glob("%s/*.png" % MODULE) + glob.glob("%s/*.svg" % MODULE)
     }
 
+def get_extensions(rootdir):
+    extensions = []
+    compile_args = []
+    link_args = []
+
+    if sys.platform.startswith('win'):
+        compile_args.append('/EHsc')
+
+    # T1 map generation extension
+    extensions.append(Extension("%s.t1_model" % MODULE,
+                                sources=['%s/t1_model.pyx' % MODULE,
+                                         '%s/src/linear_regression.cpp' % MODULE,
+                                         '%s/src/T10_calculation.cpp' % MODULE],
+                                include_dirs=['%s/src/' % MODULE,
+                                              numpy.get_include()],
+                                language="c++", extra_compile_args=compile_args, extra_link_args=link_args))
+    return cythonize(extensions)
+
 module_dir = os.path.abspath(os.path.dirname(__file__))
 
 kwargs = {
@@ -92,9 +117,11 @@ kwargs = {
     'author' : 'Martin Craig',
     'author_email' : 'martin.craig@eng.ox.ac.uk',
     'license' : 'License granted by University of Oxford for use by academics carrying out research and not for use by consumers or commercial businesses. See LICENSE file for more details',
+    'setup_requires' : ['cython'],
     'install_requires' : get_requirements(module_dir),
     'packages' : find_packages(),
     'package_data' : get_package_data(module_dir),
+    'ext_modules' : get_extensions(module_dir),
     'include_package_data' : True,
     'entry_points' : {
         'quantiphyse_plugins' : [
