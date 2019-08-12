@@ -9,7 +9,10 @@ import sys
 import os
 import re
 
-from PySide import QtCore, QtGui
+try:
+    from PySide import QtGui, QtCore, QtGui as QtWidgets
+except ImportError:
+    from PySide2 import QtGui, QtCore, QtWidgets
 
 from quantiphyse.gui.widgets import QpWidget, HelpButton, BatchButton, OverlayCombo, ChoiceOption, NumericOption, NumberList, LoadNumbers, OrderList, OrderListButtons, Citation, TitleWidget, RunBox
 from quantiphyse.data import load
