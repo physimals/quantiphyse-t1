@@ -246,7 +246,7 @@ class SourceImageList(QtWidgets.QVBoxLayout):
         self.table.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectRows)
         self.table.setHorizontalHeaderLabels(["Filename", header_text])
         header = self.table.horizontalHeader()
-        header.setResizeMode(0, QtWidgets.QHeaderView.Stretch)
+        header.setSectionResizeMode(0, QtWidgets.QHeaderView.Stretch)
         self.addWidget(self.table)
 
         bbox = QtWidgets.QHBoxLayout()
